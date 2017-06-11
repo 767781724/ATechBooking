@@ -9,15 +9,9 @@ export default class Login extends Component {
         header : null
     };
 
-    state: {
-        userid: string,
-        userpass: string
-    }
-
     constructor() {
         super();
         StatusBar.setBarStyle('light-content');
-        this.state = { userid: '', userpass: '' };
     }
 
     _loginHandler() {
