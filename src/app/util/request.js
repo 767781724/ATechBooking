@@ -1,12 +1,13 @@
+// @flow
 import ShowToast from './toast';
 
 const fetchService = (url, options = {}) => {
     return fetch(url, options)
-    .then(response => response.json())
-    .then((responseJson) => {
+    .then((response: Response) => response.json())
+    .then((responseJson: JSON) => {
         return responseJson;
     })
-    .catch((error) => {
+    .catch((error: Error) => {
         ShowToast("请求数据失败，请检查网络！")
         console.error(error);
     });
@@ -44,11 +45,11 @@ export default class Request {
 
     static addupdateSchedule(uid: string, storeid: string, storecode: string, custid: string, custname: string, linktel: string,
         zuotid: string, zuotmc: string, arrivedate: string, arrivetime: string, mealtypecode: string, mealtypename: string,
-        arrivestore: string, peoplecount: number, operid: string, oper:string, signcode: string) {
+        arrivestore: string, peoplecount: number, operid: string, oper:string, salerid: string, signcode: string) {
             return fetchService(`${baseURL}/updyud?storeid=${storeid}&storecode=${storecode}&custid=${custid}&custname=${custname}
                 &linktel=${linktel}&zuotid=${zuotid}&zuotmc=${zuotmc}&arrivedate=${arrivedate}&arrivetime=${arrivetime}
                 &arrivecanbcode=${mealtypecode}&mealtypename=${mealtypename}&arrivestore=${arrivestore}&peoplecount=${peoplecount}
-                &operid=${operid}&oper=${oper}&salerid=1&predished=0&locked=1&signcode=${signcode}`);
+                &operid=${operid}&oper=${oper}&salerid=${salerid}&predished=0&locked=1&signcode=${signcode}`);
     }
 
     static getCustomers(storeid: string, searchcode: string, signcode: string) {

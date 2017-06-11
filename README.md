@@ -1,5 +1,5 @@
 # ATechBooking
-a react native project for atech booking by typescript.
+a react native project for atech booking.
 
 # license
 MIT

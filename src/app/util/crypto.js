@@ -1,3 +1,4 @@
+// @flow
 import { SHA1, SHA256 } from 'crypto-js';
 
 export default class Crypto {
