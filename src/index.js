@@ -1,5 +1,6 @@
 // @flow
-import { AppRegistry, StackNavigator } from 'react-native';
+import { AppRegistry } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import Login from './app/scene/login'
 import Schedule from './app/scene/schedule'

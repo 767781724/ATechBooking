@@ -12,6 +12,10 @@ export default class Login extends Component {
     constructor() {
         super();
         StatusBar.setBarStyle('light-content');
+        this.state = {
+            userid: '',
+            userpass: ''
+        };
     }
 
     _loginHandler() {
