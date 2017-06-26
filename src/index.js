@@ -84,7 +84,7 @@ const Tab = TabNavigator(
 
 );
 
-const ATechBooking = StackNavigator({
+const ATechBooking = StackNavigator(
     {
         Welcome: { screen: Welcome },
         Login: { screen: Login },
@@ -98,7 +98,7 @@ const ATechBooking = StackNavigator({
             showIcon: true,
         },
     }
-});
+);
 
 // const ATechBooking = StackNavigator({
 //     Welcome: { screen: Welcome },
