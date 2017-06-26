@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Image, StyleSheet, StatusBar } from 'react-native';
 import { AppColors, Screen } from '../util/index';
 
-export default class Welcome extends Component {
+export default class Welcome extends PureComponent {
 
     static navigationOptions = {
         title: 'Welcome',

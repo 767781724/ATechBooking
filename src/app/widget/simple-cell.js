@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { Heading2, Paragraph } from './text'
 import Separator from './separator'
 
-export default class SimpleCell extends Component {
+export default class SimpleCell extends PureComponent {
     render() {
         let icon = this.props.image && <Image style={styles.icon} source={this.props.image} />
         

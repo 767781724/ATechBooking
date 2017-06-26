@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { Heading1, Heading2, Paragraph } from './text'
 import { Screen, Color } from '../util/index'
 
-export default class ScheduleCell extends Component {
+export default class ScheduleCell extends PureComponent {
     render() {
         let { info } = this.props
         return (

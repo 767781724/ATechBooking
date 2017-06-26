@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { Color, Toast, Screen } from '../util/index'
 import NavigationItem from '../widget/navigation-item'
 import RefreshListView from '../widget/refresh-listview'
 import ScheduleCell from '../widget/schedule-cell'
 
-export default class Schedule extends Component{
+export default class Schedule extends PureComponent{
     static navigationOptions = ({ navigation }) => ({
         title: `预定列表`,
         headerLeft: (

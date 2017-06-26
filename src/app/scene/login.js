@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Button, StatusBar, StyleSheet, TextInput, Image } from 'react-native';
 import { Screen, Request, Toast, Crypto } from '../util/index'
 
-export default class Login extends Component {
+export default class Login extends PureComponent {
     static navigationOptions = {
         title: 'Login',
         header : null

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 
-export default class NavigationItem extends Component {
+export default class NavigationItem extends PureComponent {
     render() {
         let icon = this.props.icon && <Image style={[styles.icon, this.props.iconStyle]} source={this.props.icon} />
         let title = this.props.title && <Text style={[styles.title, this.props.titleStyle]}>{this.props.title}</Text>

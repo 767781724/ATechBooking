@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-export default class Button extends Component {
+export default class Button extends PureComponent {
 
     static propTypes = {
         onPress: PropTypes.func,

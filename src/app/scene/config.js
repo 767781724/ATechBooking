@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Text, Button } from 'react-native';
 
-export default class Config extends Component{
+export default class Config extends PureComponent{
     render() {
         const { navigate } = this.props.navigation;
         return (
