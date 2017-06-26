@@ -1,9 +1,8 @@
-// @flow
 import { Dimensions, Platform, PixelRatio } from 'react-native'
 
 const designHeightPx = 640;
-const deviceWidthDp: number = Dimensions.get('window').width;
-const deviceHeightDp: number = Dimensions.get('window').height;
+const deviceWidthDp = Dimensions.get('window').width;
+const deviceHeightDp = Dimensions.get('window').height;
 
 export default {
     width: deviceWidthDp,

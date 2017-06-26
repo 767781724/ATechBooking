@@ -1,4 +1,3 @@
-// @flow
 import Screen from './screen'
 import System from './system'
 import Crypto from './crypto'

@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import { View, Button, StatusBar, StyleSheet, TextInput, Image } from 'react-native';
 import { Screen, Request, Toast, Crypto } from '../util/index'
@@ -20,7 +19,7 @@ export default class Login extends Component {
 
     _loginHandler() {
         Request.login(this.state.userid, this.state.userpass)
-        .then((data: JSON) => {
+        .then((data) => {
             const success = data.success;
             if (success) {
                 const { navigate } = this.props.navigation;

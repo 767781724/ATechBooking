@@ -1,4 +1,3 @@
-// @flow
 export default {
     theme: '#06C1AE',
     border: '#e0e0e0',

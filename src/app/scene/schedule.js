@@ -1,8 +1,9 @@
-// @flow
 import React, { Component } from 'react'
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { Color, Toast, Screen } from '../util/index'
 import NavigationItem from '../widget/navigation-item'
+import RefreshListView from '../widget/refresh-listview'
+import ScheduleCell from '../widget/schedule-cell'
 
 export default class Schedule extends Component{
     static navigationOptions = ({ navigation }) => ({
@@ -14,7 +15,7 @@ export default class Schedule extends Component{
                     onPress={() => {
                         const { params } = navigation.state;
                         const { navigate } = navigation;
-                        navigate('Password', {
+                        navigate('Config', {
                             oper: params.oper,
                         });
                     }}
@@ -49,6 +50,12 @@ export default class Schedule extends Component{
 
     }
 
+    componentWillMount() {
+        const { params } = this.props.navigation.state;
+        const { navigate } = this.props.navigation;
+        this.props = params
+    }
+
     _updateHandler() {
         // //Toast(this.state.userid + ' ' + this.state.userpass)
         // Request.login(this.state.userid, this.state.userpass)
@@ -73,19 +80,28 @@ export default class Schedule extends Component{
     }
 
     render() {
-        const { params } = this.props.navigation.state;
-        const { navigate } = this.props.navigation;
         return (
-            <View>
-                <Text>Schedule with {params.salername}</Text>
-                <Button onPress={() => navigate('Detail', { uid: '' })} title="新增" />
-                <Button onPress={() => navigate('Detail', { uid: '123456' })} title="修改" />
-                <Button onPress={() => navigate('Password')} title="改密码" />
+            <View style={styles.container}>
+                <RefreshListView
+                    ref={(e) => this.listView = e}
+                    dataSource={this.state.dataSource}
+                    renderHeader={() => this.renderHeader()}
+                    renderRow={(rowData) =>
+                        <ScheduleCell
+                            info={rowData}
+                            onPress={() => this.props.navigation.navigate('GroupPurchase', { info: rowData })}
+                        />
+                    }
+                    onHeaderRefresh={() => this.requestData()}
+                />
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
 });
