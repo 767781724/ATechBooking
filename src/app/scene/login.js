@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { View, Button, StatusBar, StyleSheet, TextInput, Image } from 'react-native';
+import { View, Button, StatusBar, StyleSheet, TextInput, Image, AsyncStorage } from 'react-native';
 import { Screen, Request, Toast, Crypto } from '../util/index'
 
 export default class Login extends PureComponent {
@@ -8,22 +8,54 @@ export default class Login extends PureComponent {
         header : null
     };
 
-    constructor() {
-        super();
-        StatusBar.setBarStyle('light-content');
+    constructor(props) {
+        super(props);
         this.state = {
             userid: '',
             userpass: ''
         };
     }
 
-    _loginHandler() {
-        Request.login(this.state.userid, this.state.userpass)
+    componentWillMount() {
+        const { navigate } = this.props.navigation;
+        setTimeout (() => tryAutoLogin(), 100);
+    }
+
+    tryAutoLogin() {
+        let userid;
+        AsyncStorage.getItem("userid", (error,text) => {
+            if (text !== null) {
+                userid = text;
+            }
+        })
+        let userpass;
+        AsyncStorage.getItem("userpass", (error,text) => {
+            if (text !== null) {
+                userpass = text;
+            }
+        })
+        if (userid !== null && userpass !== null) {
+            loginHandler(userid, userpass);
+        }
+    }
+
+    loginBind() {
+        loginHandler(this.state.userid, this.state.userpass)
+    }
+
+    writeCache(userid, userpass) {
+        AsyncStorage.setItem("userid", userid);
+        AsyncStorage.setItem("userpass", userpass);
+    }
+
+    loginHandler(userid, userpass) {
+        Request.login(userid, userpass)
         .then((data) => {
             const success = data.success;
             if (success) {
+                writeCache(userid, userpass)
                 const { navigate } = this.props.navigation;
-                return navigate('Schedule', { 
+                return navigate('Tab', { 
                     storeid: data.storeid,
                     salerid: data.salerid,
                     salername: data.salername,
@@ -42,6 +74,13 @@ export default class Login extends PureComponent {
     render() {
         return (
             <View style={styles.view}>
+                <StatusBar
+                    translucent={true}
+                    backgroundColor={'#rgba(0, 0, 0, 0)'}
+                    barStyle="light-content"
+                    showHideTransition='slide'
+                    hidden={false}
+                />
                 <View style={styles.logo}>
                     <Image style={{width:Screen.designRatio * 150, height:Screen.designRatio * 90}} 
                         source={require('../../img/logo.png')}/>
@@ -67,7 +106,7 @@ export default class Login extends PureComponent {
                             value={this.state.userpass} />
                     </View>
                     <View style={{marginTop: Screen.designRatio * 10}}>
-                        <Button title="登录" onPress={this._loginHandler.bind(this)}/>
+                        <Button title="登录" onPress={this.loginBind.bind(this)}/>
                     </View>
                 </View>
             </View>
